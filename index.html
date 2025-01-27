@@ -1,0 +1,206 @@
+<html>
+<head>
+    <title>ScholarSphere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: #100f0f;
+            overflow: hidden;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+
+        }
+
+        .logo img 
+        {
+            height: 100px;
+            width: 100px; 
+        }
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #1d4ed8;
+            margin-right: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #070606;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            color: #0f0f0f;
+            background-color: #5bd8e6;
+            border: none;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #2563eb;
+        }
+        .card {
+            background-color: #141212;
+            border: 1px solid #121313;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: #000000;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo img {
+            height: 70px;
+            width: 70px;
+        }
+    </style>
+    <video autoplay muted loop class="video-bg">
+        <source src="C:\Users\rajes\Downloads\ScholarSpherebg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <img src="C:\Users\rajes\OneDrive\Pictures\ScholarSphere.png" alt="Logo"> 
+                <a href="#" onclick="loadPage('home')" style="font-weight: bold; font-size: 1.5rem;">ScholarSphere</a>
+            </div>
+            <div>
+                <a href="#" onclick="loadPage('signin')">Sign In</a>
+                <a href="#" onclick="loadPage('signup')">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="content">
+        </div>
+    </div>
+
+    <script>
+        function loadPage(page) {
+            const content = document.getElementById('content');
+
+            if (page === 'home') {
+                content.innerHTML = `
+                    <h1>Welcome to the ScholarSphere</h1>
+                    <p>Explore and upload resources for students and faculty.</p>
+                    <a href="#" onclick="loadPage('resources')" class="button">View Resources</a>
+                    <a href="#" onclick="loadPage('upload')" class="button" style="background-color: #22c55e;">Upload Resource</a>
+                `;
+            } else if (page === 'resources') {
+                content.innerHTML = `
+                    <h1>Available Resources</h1>
+                    <div class="card">
+                        <h2>Sample Note</h2>
+                        <p>Description of the resource.</p>
+                        <a href="#" class="button">Download</a>
+                    </div>
+                `;
+            } else if (page === 'upload') {
+                content.innerHTML = `
+                    <h1>Upload Resource</h1>
+                    <form onsubmit="event.preventDefault(); alert('Resource uploaded!');">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" placeholder="Enter resource title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" placeholder="Enter description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Upload File</label>
+                            <input type="file" id="file">
+                        </div>
+                        <button type="submit" class="button" style="background-color: #22c55e;">Submit</button>
+                    </form>
+                `;
+            } else if (page === 'signin') {
+                content.innerHTML = `
+                    <h1>Sign In</h1>
+                    <form onsubmit="event.preventDefault(); alert('Signed In!');">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="button">Sign In</button>
+                    </form>
+                `;
+            } else if (page === 'signup') {
+                content.innerHTML = `
+                    <h1>Sign Up</h1>
+                    <form onsubmit="event.preventDefault(); alert('Signed Up!');">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="button">Sign Up</button>
+                    </form>
+                `;
+            }
+        }
+        loadPage('home');
+    </script>
+</body>
+</html>
